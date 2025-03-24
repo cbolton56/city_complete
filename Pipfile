@@ -9,6 +9,10 @@ pydantic = "*"
 uvicorn = "*"
 pytest = "*"
 httpx = "*"
+pandas = "*"
+numpy = "*"
+rapidfuzz = "*"
+geopy = "*"
 
 [dev-packages]
 pytest = "*"
