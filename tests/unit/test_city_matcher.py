@@ -1,12 +1,15 @@
 import pytest
-from FuzzyCitySearch.FuzzyCitySearch import FuzzyCitySearch
+from CityAutoCompleter.CityAutoCompleter import CityAutoCompleter
 
-def test_city_search_with_no_lat_long():
-    city_search = FuzzyCitySearch()
-    results = city_search.search("New")
+def test_city_search_returns_chicago():
+    city_search = CityAutoCompleter()
+    results = city_search.suggest("chi")
     print(results)
+    # assert results[0]['name'] == "Chicago"
 
-def test_city_search_with_lat_long():
-    city_search = FuzzyCitySearch()
-    results = city_search.search("New", query_lat=40.12, query_long=-74.02)
+def test_city_search_with_lat_long_returns_chicago():
+    city_search = CityAutoCompleter()
+    results = city_search.suggest("chi", user_lat=41.84, user_lon=-87.65)
     print(results)
+    assert results[0]['name'] == "Chicago"
+

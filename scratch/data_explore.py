@@ -14,3 +14,12 @@ print(df['country'].unique())
 # where is name different from ascii name?
 name_diff = df[df['ascii'] != df['name']]
 print(name_diff)
+
+# this dataset makes me sad
+is_newyork_in_here = df[df['name'] == 'New York']
+print("is new york?")
+print(is_newyork_in_here)
+
+# what are the big cities
+df_sorted = df.sort_values(by='population', ascending=False)
+print(df_sorted.head())

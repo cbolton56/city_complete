@@ -1,9 +1,10 @@
 from typing import Optional
 from fastapi import FastAPI
 
-from FuzzyCitySearch.FuzzyCitySearch import FuzzyCitySearch
+from CityAutoCompleter.CityAutoCompleter import CityAutoCompleter
 
-fuzzy_search = FuzzyCitySearch()
+auto_completer = CityAutoCompleter()
+
 app = FastAPI()
 
 @app.get('/')
@@ -12,5 +13,5 @@ async def read_root():
 
 @app.get("/suggestions")
 async def get_suggestions(q: str, lat: Optional[str] = None, long: Optional[str] = None):
-    cities = fuzzy_search.search(query=q, query_lat=lat, query_long=long)
+    cities = auto_completer.suggest(prefix=q, user_lat=lat, user_lon=long)
     return {"suggestions": cities}
