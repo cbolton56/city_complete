@@ -5,7 +5,6 @@ name = "pypi"
 
 [packages]
 fastapi = {extras = ["standard"], version = "*"}
-pydantic = "*"
 uvicorn = "*"
 pytest = "*"
 httpx = "*"
@@ -13,6 +12,7 @@ pandas = "*"
 numpy = "*"
 rapidfuzz = "*"
 geopy = "*"
+pydantic = "*"
 
 [dev-packages]
 pytest = "*"
