@@ -1,16 +1,16 @@
-from typing import Union
+from typing import Optional
 from fastapi import FastAPI
 
+from FuzzyCitySearch.FuzzyCitySearch import FuzzyCitySearch
+
+fuzzy_search = FuzzyCitySearch()
 app = FastAPI()
 
 @app.get('/')
 def read_root():
     return {"Hello": "World"}
 
-@app.get('/')
-def read_root():
-    return {"Hello": "World"}
-
-@app.get("/suggestions/{query_param}")
-def read_item(query_param: str, q: Union[str, None], lat: Union[float, None] = None, long: Union[float, None] = None):
-    return {"item_id": query_param, "q": q}
+@app.get("/suggestions")
+def get_suggestions(q: str, lat: Optional[str] = None, long: Optional[str] = None):
+    cities = fuzzy_search.search(query=q, query_lat=lat, query_lon=long)
+    return {"suggestions": cities}
