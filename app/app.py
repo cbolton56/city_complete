@@ -12,5 +12,5 @@ async def read_root():
 
 @app.get("/suggestions")
 async def get_suggestions(q: str, lat: Optional[str] = None, long: Optional[str] = None):
-    cities = fuzzy_search.search(query=q, query_lat=lat, query_lon=long)
+    cities = fuzzy_search.search(query=q, query_lat=lat, query_long=long)
     return {"suggestions": cities}
