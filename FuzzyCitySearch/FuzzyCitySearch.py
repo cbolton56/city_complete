@@ -46,13 +46,15 @@ class FuzzyCitySearch:
             if query_lat is not None and query_lon is not None:
                 distance = self._calculate_distance(query_lat, query_lon, city_lat, city_lon)
 
-            results.append({
-                'name': city_name,
-                'score': score,
-                'latitude': city_lat,
-                'longitude': city_lon,
-                'distance_km': distance
-            })
+            # check each city's population
+            if city_data['population'] > 5000:
+                results.append({
+                    'name': city_name,
+                    'score': score,
+                    'latitude': city_lat,
+                    'longitude': city_lon,
+                    'distance_km': distance
+                })
         
         # sort results descending
         if query_lat is not None and query_lon is not None:
