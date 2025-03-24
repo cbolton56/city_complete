@@ -5,6 +5,7 @@ import logging
 from CityAutoCompleter.CityAutoCompleter import CityAutoCompleter
 from schema.location import Location
 
+logger = logging.getLogger(__name__)
 auto_completer = CityAutoCompleter()
 
 app = FastAPI(
@@ -19,5 +20,10 @@ def root():
 
 @app.get("/suggestions", description="Autocomplete city names based on prefix and optional location")
 async def get_suggestions(location: Location = Depends()):
-    cities = auto_completer.suggest(prefix=location.q, user_lat=location.lat, user_lon=location.long)
-    return {"suggestions": cities}
+    try: 
+        logger.info(f"Searching for city with q={location.q}, latitude={location.lat}, longitude={location.long}")
+        cities = auto_completer.suggest(prefix=location.q, user_lat=location.lat, user_lon=location.long)
+        return {"suggestions": cities}
+    except Exception as e:
+        logger.exception(f"An exception occurred: {e}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
