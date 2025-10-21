@@ -19,4 +19,4 @@ This project will run the docker compose command during post creation. Right cli
 ## The app is being hosted via railway. View it here:
 
 
-https://citycomplete-production.up.railway.app/docs
+[https://citycomplete-production.up.railway.app/docs](https://citycomplete-production-cc6f.up.railway.app/docs)
